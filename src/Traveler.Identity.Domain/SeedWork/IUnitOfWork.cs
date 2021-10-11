@@ -1,7 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace traveler.identity.api.domain.SeedWork
+namespace Traveler.Identity.Domain.SeedWork
 {
 	public interface IUnitOfWork
 	{

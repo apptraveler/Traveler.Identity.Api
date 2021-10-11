@@ -1,6 +1,6 @@
-using traveler.identity.api.domain.Events;
+using Traveler.Identity.Domain.Events;
 
-namespace traveler.identity.api.domain.Exceptions
+namespace Traveler.Identity.Domain.Exceptions
 {
 	public class ExceptionNotification : Event
 	{

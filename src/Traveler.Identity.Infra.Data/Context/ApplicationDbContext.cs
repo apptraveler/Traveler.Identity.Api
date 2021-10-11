@@ -5,7 +5,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace traveler.identity.api.infra.Data.Context
+namespace Traveler.Identity.Infra.Data.Context
 {
 	public class ApplicationDbContext : DbContext
 	{

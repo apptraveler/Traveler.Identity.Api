@@ -1,12 +1,15 @@
-namespace traveler.identity.api.application.Commands
+using MediatR;
+using Traveler.Identity.Application.DTOs;
+
+namespace Traveler.Identity.Application.Commands
 {
-    public class UserSignUpCommand : Command
+    public class RegisterJourneyerCommand : Command, IRequest<RegisterJourneyerResponse>
     {
         public string Username { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
 
-        public UserSignUpCommand(string username, string email, string password)
+        public RegisterJourneyerCommand(string username, string email, string password)
         {
             Username = username;
             Email = email;
@@ -15,7 +18,7 @@ namespace traveler.identity.api.application.Commands
 
         public override bool IsValid()
         {
-            throw new System.NotImplementedException();
+            return true;
         }
     }
 }

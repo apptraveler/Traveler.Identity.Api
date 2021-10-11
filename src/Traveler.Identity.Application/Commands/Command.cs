@@ -1,6 +1,6 @@
 using FluentValidation.Results;
 
-namespace traveler.identity.api.application.Commands
+namespace Traveler.Identity.Application.Commands
 {
 	public abstract class Command
 	{

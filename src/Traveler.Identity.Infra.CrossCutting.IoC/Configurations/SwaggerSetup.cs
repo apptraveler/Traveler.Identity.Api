@@ -8,7 +8,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace traveler.identity.api.infra.CrossCutting.IoC.Configurations
+namespace Traveler.Identity.Infra.CrossCutting.IoC.Configurations
 {
 	public static class SwaggerSetup
 	{

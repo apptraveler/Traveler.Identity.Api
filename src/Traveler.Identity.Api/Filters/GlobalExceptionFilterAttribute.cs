@@ -1,9 +1,9 @@
 using System;
-using traveler.identity.api.api.v1.Filters.ErrorsModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Traveler.Identity.Api.Filters.ErrorsModels;
 
-namespace traveler.identity.api.api.v1.Filters
+namespace Traveler.Identity.Api.Filters
 {
 	public class GlobalExceptionFilterAttribute : Attribute, IExceptionFilter
 	{

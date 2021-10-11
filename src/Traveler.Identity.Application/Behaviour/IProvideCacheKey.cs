@@ -1,4 +1,4 @@
-﻿namespace traveler.identity.api.application.Behaviour
+﻿namespace Traveler.Identity.Application.Behaviour
 {
     public interface IProvideCacheKey
     {

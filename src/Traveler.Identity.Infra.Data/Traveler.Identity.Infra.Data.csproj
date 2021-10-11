@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
-        <RootNamespace>traveler.identity.api.infra.Data</RootNamespace>
+        <RootNamespace>Traveler.Identity.Infra.Data</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

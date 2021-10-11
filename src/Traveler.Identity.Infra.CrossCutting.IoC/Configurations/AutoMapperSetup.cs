@@ -1,9 +1,8 @@
 using System;
-using AutoMapper;
-using traveler.identity.api.application.AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
+using Traveler.Identity.Application.AutoMapper;
 
-namespace traveler.identity.api.infra.CrossCutting.IoC.Configurations
+namespace Traveler.Identity.Infra.CrossCutting.IoC.Configurations
 {
 	public static class AutoMapperSetup
 	{

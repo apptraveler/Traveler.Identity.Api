@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
         <LangVersion>9</LangVersion>
-        <RootNamespace>traveler.identity.api.api.v1</RootNamespace>
+        <RootNamespace>Traveler.Identity.Api</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

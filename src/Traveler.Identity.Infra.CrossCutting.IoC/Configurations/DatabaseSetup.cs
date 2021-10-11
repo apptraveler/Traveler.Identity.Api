@@ -1,8 +1,8 @@
 using System;
-using traveler.identity.api.infra.Data.Context;
 using Microsoft.Extensions.DependencyInjection;
+using Traveler.Identity.Infra.Data.Context;
 
-namespace traveler.identity.api.infra.CrossCutting.IoC.Configurations
+namespace Traveler.Identity.Infra.CrossCutting.IoC.Configurations
 {
 	public static class DatabaseSetup
 	{

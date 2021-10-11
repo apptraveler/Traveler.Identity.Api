@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
- using traveler.identity.api.api.v1.Filters;
- using traveler.identity.api.domain.Exceptions;
- using MediatR;
- using Microsoft.AspNetCore.Mvc;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Traveler.Identity.Api.Filters;
+using Traveler.Identity.Domain.Exceptions;
 
-namespace traveler.identity.api.api.v1.Controllers
+namespace Traveler.Identity.Api.Controllers
 {
 	[Route("your-project-name/[controller]/v{version:apiVersion}")]
 	[ServiceFilter(typeof(GlobalExceptionFilterAttribute))]

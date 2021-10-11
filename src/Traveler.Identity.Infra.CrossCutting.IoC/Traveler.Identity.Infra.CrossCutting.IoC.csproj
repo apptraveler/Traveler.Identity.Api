@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
-        <RootNamespace>traveler.identity.api.infra.CrossCutting.IoC</RootNamespace>
+        <RootNamespace>Traveler.Identity.Infra.CrossCutting.IoC</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -15,6 +15,8 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Traveler.Identity.Application\Traveler.Identity.Application.csproj" />
+        <ProjectReference Include="..\Traveler.Identity.Infra.CrossCutting.Authorization\Traveler.Identity.Infra.CrossCutting.Authorization.csproj" />
+        <ProjectReference Include="..\Traveler.Identity.Infra.CrossCutting.Environments\Traveler.Identity.Infra.CrossCutting.Environments.csproj" />
         <ProjectReference Include="..\Traveler.Identity.Infra.Data\Traveler.Identity.Infra.Data.csproj" />
     </ItemGroup>
 

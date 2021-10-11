@@ -1,14 +1,14 @@
 ﻿using System;
-using MediatR;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using FluentValidation;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using traveler.identity.api.domain.Exceptions;
+using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.Caching.Memory;
+using Traveler.Identity.Domain.Exceptions;
 
-namespace traveler.identity.api.application.Behaviour
+namespace Traveler.Identity.Application.Behaviour
 {
     public class PipelineBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
     {
