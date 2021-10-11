@@ -1,6 +1,6 @@
 using System;
 
-namespace traveler.identity.api.api.v1.Filters.ErrorsModels
+namespace Traveler.Identity.Api.Filters.ErrorsModels
 {
 	public class DefaultError
 	{

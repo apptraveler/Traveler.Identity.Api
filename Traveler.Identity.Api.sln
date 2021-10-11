@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Traveler.Identity.Api.V1", "src\Traveler.Identity.Api.V1\Traveler.Identity.Api.V1.csproj", "{2FA777D6-8B26-4380-9ABF-837C1C2A59E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Traveler.Identity.Api", "src\Traveler.Identity.Api\Traveler.Identity.Api.csproj", "{2FA777D6-8B26-4380-9ABF-837C1C2A59E0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - Presentation", "01 - Presentation", "{9DBA9B17-4908-41F9-84F4-F92B8A7B9687}"
 EndProject
@@ -21,6 +21,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04.1 - Data", "04.1 - Data", "{8B76B6ED-B104-440D-A530-CA16664604FD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Traveler.Identity.Infra.Data", "src\Traveler.Identity.Infra.Data\Traveler.Identity.Infra.Data.csproj", "{FEE1EE91-190A-4E79-894D-0D73EC54D424}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04.3 - Authorization", "04.3 - Authorization", "{2DB2EE77-3B4C-4728-A4D5-CBFEE6508D88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Traveler.Identity.Infra.CrossCutting.Authorization", "src\Traveler.Identity.Infra.CrossCutting.Authorization\Traveler.Identity.Infra.CrossCutting.Authorization.csproj", "{7B3B0928-D715-4B68-869E-B40C94ECE5DA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04.4 - Environments", "04.4 - Environments", "{706C88C3-53C3-4513-95F4-E6402E5D28C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Traveler.Identity.Infra.CrossCutting.Environments", "src\Traveler.Identity.Infra.CrossCutting.Environments\Traveler.Identity.Infra.CrossCutting.Environments.csproj", "{F0C0C1AF-3BD6-47A2-A1EF-A235418822A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +56,14 @@ Global
 		{FEE1EE91-190A-4E79-894D-0D73EC54D424}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEE1EE91-190A-4E79-894D-0D73EC54D424}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEE1EE91-190A-4E79-894D-0D73EC54D424}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B3B0928-D715-4B68-869E-B40C94ECE5DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B3B0928-D715-4B68-869E-B40C94ECE5DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B3B0928-D715-4B68-869E-B40C94ECE5DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B3B0928-D715-4B68-869E-B40C94ECE5DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0C0C1AF-3BD6-47A2-A1EF-A235418822A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0C0C1AF-3BD6-47A2-A1EF-A235418822A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0C0C1AF-3BD6-47A2-A1EF-A235418822A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0C0C1AF-3BD6-47A2-A1EF-A235418822A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2FA777D6-8B26-4380-9ABF-837C1C2A59E0} = {9DBA9B17-4908-41F9-84F4-F92B8A7B9687}
@@ -57,5 +73,9 @@ Global
 		{F0CCF860-E30D-4369-B85E-31B73152379A} = {F6CF824B-E87A-4267-B18F-BE9DF4591821}
 		{8B76B6ED-B104-440D-A530-CA16664604FD} = {B1DCD034-4E6C-4E92-A38D-150B18B65BD3}
 		{FEE1EE91-190A-4E79-894D-0D73EC54D424} = {8B76B6ED-B104-440D-A530-CA16664604FD}
+		{2DB2EE77-3B4C-4728-A4D5-CBFEE6508D88} = {B1DCD034-4E6C-4E92-A38D-150B18B65BD3}
+		{7B3B0928-D715-4B68-869E-B40C94ECE5DA} = {2DB2EE77-3B4C-4728-A4D5-CBFEE6508D88}
+		{706C88C3-53C3-4513-95F4-E6402E5D28C1} = {B1DCD034-4E6C-4E92-A38D-150B18B65BD3}
+		{F0C0C1AF-3BD6-47A2-A1EF-A235418822A4} = {706C88C3-53C3-4513-95F4-E6402E5D28C1}
 	EndGlobalSection
 EndGlobal

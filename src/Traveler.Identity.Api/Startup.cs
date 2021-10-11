@@ -1,22 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using traveler.identity.api.api.v1.Filters;
-using traveler.identity.api.application.CommandHandlers;
-using traveler.identity.api.infra.CrossCutting.IoC.Configurations;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Traveler.Identity.Api.Filters;
+using Traveler.Identity.Application.CommandHandlers;
+using Traveler.Identity.Infra.CrossCutting.IoC.Configurations;
 
-namespace traveler.identity.api.api.v1
+namespace Traveler.Identity.Api
 {
 	public class Startup
 	{
@@ -33,11 +26,10 @@ namespace traveler.identity.api.api.v1
 			services.AddVersionedApiExplorer();
 			services.AddSwaggerSetup();
 			services.AddAutoMapper();
-			services.AddDependencyInjectionSetup();
+			services.AddDependencyInjectionSetup(Configuration);
 			services.AddMediatR(typeof(CommandHandler));
 			services.AddScoped<GlobalExceptionFilterAttribute>();
 			services.AddDatabaseSetup();
-			
 			services.AddControllers();
 		}
 

@@ -1,4 +1,4 @@
-namespace traveler.identity.api.domain.SeedWork
+namespace Traveler.Identity.Domain.SeedWork
 {
 	public interface IAggregateRoot { }
 }

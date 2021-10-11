@@ -1,11 +1,14 @@
-namespace traveler.identity.api.application.Commands
+using MediatR;
+using Traveler.Identity.Application.DTOs;
+
+namespace Traveler.Identity.Application.Commands
 {
-    public class UserSignInCommand : Command
+    public class LoginJourneyerCommand : Command, IRequest<LoginJourneyerResponse>
     {
         public string UsernameOrEmail { get; set; }
         public string Password { get; set; }
 
-        public UserSignInCommand(string usernameOrEmail, string password)
+        public LoginJourneyerCommand(string usernameOrEmail, string password)
         {
             UsernameOrEmail = usernameOrEmail;
             Password = password;

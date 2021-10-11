@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using MediatR;
 
-namespace traveler.identity.api.domain.SeedWork
+namespace Traveler.Identity.Domain.SeedWork
 {
 	public class Entity
 	{

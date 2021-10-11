@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 
-namespace traveler.identity.api.domain.Exceptions
+namespace Traveler.Identity.Domain.Exceptions
 {
 	public class ExceptionNotificationHandler : INotificationHandler<ExceptionNotification>
 	{

@@ -1,8 +1,8 @@
-using traveler.identity.api.infra.Data.Context;
-using traveler.identity.api.domain.SeedWork;
 using Microsoft.EntityFrameworkCore;
+using Traveler.Identity.Domain.SeedWork;
+using Traveler.Identity.Infra.Data.Context;
 
-namespace traveler.identity.api.infra.Data.Repositories
+namespace Traveler.Identity.Infra.Data.Repositories
 {
 	public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IAggregateRoot
 	{

@@ -1,6 +1,6 @@
 using AutoMapper;
 
-namespace traveler.identity.api.application.AutoMapper
+namespace Traveler.Identity.Application.AutoMapper
 {
 	public abstract class MappingProfile : Profile
 	{

@@ -1,7 +1,7 @@
 using System;
 using MediatR;
 
-namespace traveler.identity.api.domain.Events
+namespace Traveler.Identity.Domain.Events
 {
 	public class Event : INotification
 	{

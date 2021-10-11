@@ -1,7 +1,6 @@
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace traveler.identity.api.infra.Data.Mappings.Database
+namespace Traveler.Identity.Infra.Data.Mappings.Database
 {
 	public class ClassMap
 		// : IEntityTypeConfiguration<SomeEntity>

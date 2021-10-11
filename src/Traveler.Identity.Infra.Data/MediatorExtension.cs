@@ -1,10 +1,10 @@
-using System.Threading.Tasks;
-using traveler.identity.api.infra.Data.Context;
-using MediatR;
 using System.Linq;
-using traveler.identity.api.domain.SeedWork;
+using System.Threading.Tasks;
+using MediatR;
+using Traveler.Identity.Domain.SeedWork;
+using Traveler.Identity.Infra.Data.Context;
 
-namespace traveler.identity.api.infra.Data
+namespace Traveler.Identity.Infra.Data
 {
 	static class MediatorExtension
 	{

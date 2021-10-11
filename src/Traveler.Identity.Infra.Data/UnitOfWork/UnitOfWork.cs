@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
-using traveler.identity.api.infra.Data.Context;
-using traveler.identity.api.domain.SeedWork;
+using Traveler.Identity.Domain.SeedWork;
+using Traveler.Identity.Infra.Data.Context;
 
-namespace traveler.identity.api.infra.Data.UnitOfWork
+namespace Traveler.Identity.Infra.Data.UnitOfWork
 {
 	public class UnitOfWork : IUnitOfWork
 	{

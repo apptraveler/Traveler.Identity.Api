@@ -2,7 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 
-namespace traveler.identity.api.application.EventHandlers
+namespace Traveler.Identity.Application.EventHandlers
 {
 	public abstract class EventHandler<T> : INotificationHandler<T> where T : INotification
 	{
