@@ -1,13 +1,13 @@
-FROM mcr.microsoft.com/dotnet/core/sdk AS publish
+FROM mcr.microsoft.com/dotnet/sdk AS publish
 WORKDIR /src
 
 COPY . .
-RUN dotnet publish "src/nomeprojetoAPI" -c Release -o /app/publish
-FROM mcr.microsoft.com/dotnet/core/aspnet
+RUN dotnet publish "src/Traveler.Identity.Api.V1" -c Release -o /app/publish
+FROM mcr.microsoft.com/dotnet/sdk
 
 WORKDIR /app
 COPY --from=publish /app/publish .
 
 EXPOSE 5000
 EXPOSE 5001
-ENTRYPOINT ["dotnet", "nomeprojetoAPI.dll"]
+ENTRYPOINT ["dotnet", "Traveler.Identity.Api.V1.dll"]
