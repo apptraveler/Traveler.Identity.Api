@@ -1,15 +1,17 @@
 ﻿using System;
 using MediatR;
 using FluentValidation;
+using Traveler.Identity.Domain.SeedWork;
 using Microsoft.Extensions.Configuration;
 using Traveler.Identity.Domain.Exceptions;
 using Traveler.Identity.Application.Behaviour;
+using Traveler.Identity.Infra.Data.UnitOfWork;
 using Microsoft.Extensions.DependencyInjection;
-using Traveler.Identity.Domain.SeedWork;
+using Traveler.Identity.Application.Adapters.Authorization;
+using Traveler.Identity.Domain.Aggregates.JourneyerAggregate;
+using Traveler.Identity.Infra.Data.Repositories.JourneyerRepository;
 using Traveler.Identity.Infra.CrossCutting.Authorization.JwtAuthorization;
 using Traveler.Identity.Infra.CrossCutting.Environments.EnvironmentsConfigurations;
-using Traveler.Identity.Infra.Data.UnitOfWork;
-using IAuthorizationService = Traveler.Identity.Application.Adapters.Authorization.IAuthorizationService;
 
 namespace Traveler.Identity.Infra.CrossCutting.IoC
 {
@@ -25,9 +27,8 @@ namespace Traveler.Identity.Infra.CrossCutting.IoC
 
         private static void RegisterData(IServiceCollection services)
         {
-            // here goes your repository injection
-            // sample: services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IJourneyerRepository, JourneyerRepository>();
         }
 
         private static void RegisterMediatR(IServiceCollection services)
@@ -40,7 +41,7 @@ namespace Traveler.Identity.Infra.CrossCutting.IoC
                 .ForEach(result => services.AddScoped(result.InterfaceType, result.ValidatorType));
 
             // injection for Mediator
-            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(PipelineBehavior<,>));
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(PipelineBehaviour<,>));
             services.AddScoped<INotificationHandler<ExceptionNotification>, ExceptionNotificationHandler>();
         }
 
