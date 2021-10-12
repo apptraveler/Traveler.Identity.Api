@@ -20,37 +20,37 @@ namespace Traveler.Identity.Infra.CrossCutting.IoC.Configurations
 			{
 				s.SwaggerDoc("v1", new OpenApiInfo
 				{
-					Title = "Your Api Name",
-					Description = "Some description",
+					Title = "Traveler Identity",
+					Description = "Authentication for a traveling application",
 					Contact = new OpenApiContact {Name = "YourName", Email = "youremail@email.com"}
 					//you can add a contact URI with you want
 					// Contact = new OpenApiContact { Name = "Gabriel", Email = "email@gmail.com", Url = new Uri("https://yoursite.com") }
 				});
 
 				// here it's adding a new authorization header to swagger ui, the default is JWT Bearer Token, but you can use anyone
-				s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-				{
-					Name = "Authorization",
-					Type = SecuritySchemeType.Http,
-					In = ParameterLocation.Header,
-					Scheme = "bearer",
-					Description = "Jwt Token For authentication"
-				});
+				// s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+				// {
+				// 	Name = "Authorization",
+				// 	Type = SecuritySchemeType.Http,
+				// 	In = ParameterLocation.Header,
+				// 	Scheme = "bearer",
+				// 	Description = "Jwt Token For authentication"
+				// });
 
-				s.AddSecurityRequirement(new OpenApiSecurityRequirement
-				{
-					{
-						new OpenApiSecurityScheme
-						{
-							Reference = new OpenApiReference
-							{
-								Type = ReferenceType.SecurityScheme,
-								Id = "Bearer"
-							}
-						},
-						new List<string>()
-					}
-				});
+				// s.AddSecurityRequirement(new OpenApiSecurityRequirement
+				// {
+				// 	{
+				// 		new OpenApiSecurityScheme
+				// 		{
+				// 			Reference = new OpenApiReference
+				// 			{
+				// 				Type = ReferenceType.SecurityScheme,
+				// 				Id = "Bearer"
+				// 			}
+				// 		},
+				// 		new List<string>()
+				// 	}
+				// });
 
 				s.OperationFilter<RemoveVersionParameterFilter>();
 				s.DocumentFilter<ReplaceVersionWithExactValueInPathFilter>();

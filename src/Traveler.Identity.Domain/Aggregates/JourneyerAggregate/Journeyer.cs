@@ -14,6 +14,7 @@ namespace Traveler.Identity.Domain.Aggregates.JourneyerAggregate
 
         public Journeyer(string email, string username, string password)
         {
+            SetId();
             Email = email;
             Username = username;
             Password = password;

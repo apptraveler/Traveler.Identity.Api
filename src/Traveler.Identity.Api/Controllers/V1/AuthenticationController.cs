@@ -21,7 +21,7 @@ namespace Traveler.Identity.Api.Controllers.V1
         }
 
         [HttpPost("login")]
-        [ProducesResponseType(typeof(IEnumerable<string>), 200)]
+        [ProducesResponseType(typeof(SuccessResponseDto<LoginJourneyerResponse>), 200)]
         public async Task<IActionResult> JourneyerLoginAsync(LoginJourneyerCommand loginJourneyerCommand)
         {
             var loginJourneyerResponse = await _bus.Send(loginJourneyerCommand);
@@ -30,7 +30,7 @@ namespace Traveler.Identity.Api.Controllers.V1
         }
 
         [HttpPost("register")]
-        [ProducesResponseType(typeof(IEnumerable<string>), 200)]
+        [ProducesResponseType(typeof(SuccessResponseDto<RegisterJourneyerResponse>), 200)]
         public async Task<IActionResult> JourneyerRegisterAsync(RegisterJourneyerCommand registerJourneyerCommand)
         {
             var registerJourneyerResponse = await _bus.Send(registerJourneyerCommand);
@@ -39,7 +39,7 @@ namespace Traveler.Identity.Api.Controllers.V1
         }
 
         [HttpPost("forgot-password")]
-        [ProducesResponseType(typeof(IEnumerable<string>), 200)]
+        [ProducesResponseType(typeof(SuccessResponseDto<JourneyerForgotPasswordResponse>), 200)]
         public async Task<IActionResult> ForgotMyPassword(JourneyerForgotPasswordCommand journeyerForgotPasswordCommand)
         {
             var journeyerForgotPasswordResponse = await _bus.Send(journeyerForgotPasswordCommand);

@@ -24,6 +24,9 @@
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
+        "ConnectionString": "Data Source=../Traveler.Identity.Infra.Data/Identity.db;",
+        "GlobalErrorCode": "188",
+        "GlobalErrorMessage": "Ocorreu um erro ao processar sua requisição",
         "JwtSettings__SecretKey": "mdStEViPwImc8Q81iGSxngvsoqEveGYkOf5JQDBR2xOK0iKqkHYRN1w1n3PxhZW",
         "JwtSettings__Issuer": "Traveler",
         "JwtSettings__Audience": "Traveler"

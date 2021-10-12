@@ -5,6 +5,6 @@ namespace Traveler.Identity.Domain.Aggregates.JourneyerAggregate
 {
     public interface IJourneyerRepository : IRepository<Journeyer>
     {
-        Task<Journeyer> GetByEmailOrUsername(string emailOrUsername);
+        Task<Journeyer> GetByEmailOrUsernameAsync(string emailOrUsername);
     }
 }

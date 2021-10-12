@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,50 +12,52 @@ using Traveler.Identity.Infra.CrossCutting.IoC.Configurations;
 
 namespace Traveler.Identity.Api
 {
-	public class Startup
-	{
-		public Startup(IConfiguration configuration)
-		{
-			Configuration = configuration;
-		}
+    public class Startup
+    {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
 
-		public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; }
 
-		public void ConfigureServices(IServiceCollection services)
-		{
-			services.AddApiVersioning();
-			services.AddVersionedApiExplorer();
-			services.AddSwaggerSetup();
-			services.AddAutoMapper();
-			services.AddDependencyInjectionSetup(Configuration);
-			services.AddMediatR(typeof(CommandHandler));
-			services.AddScoped<GlobalExceptionFilterAttribute>();
-			services.AddDatabaseSetup();
-			services.AddControllers();
-		}
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddApiVersioning();
+            services.AddVersionedApiExplorer();
+            services.AddSwaggerSetup();
+            services.AddAutoMapper();
+            services.AddDatabaseSetup();
+            services.AddDependencyInjectionSetup(Configuration);
+            services.AddMediatR(typeof(CommandHandler));
+            services.AddScoped<GlobalExceptionFilterAttribute>();
+            services
+                .AddControllers()
+                .AddJsonOptions(options => options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull);
+        }
 
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
-		{
-			if (env.IsDevelopment())
-			{
-				app.UseDeveloperExceptionPage();
-			}
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
 
-			app.UseCors(builder =>
-			{
-				builder.WithOrigins("*");
-				builder.AllowAnyOrigin();
-				builder.AllowAnyMethod();
-				builder.AllowAnyHeader();
-			});
-			
+            app.UseCors(builder =>
+            {
+                builder.WithOrigins("*");
+                builder.AllowAnyOrigin();
+                builder.AllowAnyMethod();
+                builder.AllowAnyHeader();
+            });
 
-			app.UseRouting();
 
-			app.UseAuthorization();
-			app.UseSwaggerSetup(provider);
+            app.UseRouting();
 
-			app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-		}
-	}
+            app.UseAuthorization();
+            app.UseSwaggerSetup(provider);
+
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+        }
+    }
 }
