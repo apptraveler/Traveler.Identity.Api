@@ -1,10 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using System.Text;
+using System.Security.Claims;
+using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using Traveler.Identity.Application.Adapters.Authorization;
 using Traveler.Identity.Domain.Aggregates.JourneyerAggregate;
 using Traveler.Identity.Infra.CrossCutting.Environments.EnvironmentsConfigurations;
@@ -24,7 +24,7 @@ namespace Traveler.Identity.Infra.CrossCutting.Authorization.JwtAuthorization
 
         public IEnumerable<Claim> GetTokenClaims(string token)
         {
-            var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);
+            var key = Encoding.ASCII.GetBytes(_jwtSettings.SecretKey);
             var tokenValidationParameters = new TokenValidationParameters()
             {
                 ValidateIssuer = true,
@@ -42,7 +42,7 @@ namespace Traveler.Identity.Infra.CrossCutting.Authorization.JwtAuthorization
 
         public bool ValidateToken(string token)
         {
-            var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);
+            var key = Encoding.ASCII.GetBytes(_jwtSettings.SecretKey);
             var tokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuer = true,
@@ -70,22 +70,22 @@ namespace Traveler.Identity.Infra.CrossCutting.Authorization.JwtAuthorization
         public string GenerateToken(Journeyer journeyer)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);
+            var key = Encoding.ASCII.GetBytes(_jwtSettings.SecretKey);
 
             var claims = new List<Claim>
             {
-                new(JwtRegisteredClaimNames.Sub, journeyer.Username),
                 new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new(JwtRegisteredClaimNames.Email, journeyer.Email),
-                new("UserId", journeyer.Id.ToString()),
+                new(JwtRegisteredClaimNames.UniqueName, journeyer.Username),
+                new("userId", journeyer.Id.ToString()),
             };
 
-            var credentials = new SigningCredentials(new SymmetricSecurityKey(key),
-                SecurityAlgorithms.HmacSha256Signature);
+            var credentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature);
+            
             var token = new JwtSecurityToken(
-                issuer: _jwtSettings.Issuer,
-                audience: _jwtSettings.Audience,
-                claims: claims,
+                _jwtSettings.Issuer,
+                _jwtSettings.Audience,
+                claims,
                 signingCredentials: credentials
             );
 

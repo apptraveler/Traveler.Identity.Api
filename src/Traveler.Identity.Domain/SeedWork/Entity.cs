@@ -7,19 +7,14 @@ namespace Traveler.Identity.Domain.SeedWork
 	public class Entity
 	{
 		private int? _requestedHashCode;
-		private Guid _Id;
+		private Guid _id;
 
-		public virtual Guid Id
-		{
-			get { return _Id; }
-		}
+		public virtual Guid Id => _id;
 
 		protected void SetId()
 		{
-			_Id = Guid.NewGuid();
-		} 
-		
-			
+			_id = Guid.NewGuid();
+		}
 
 		#region Entity
 		public bool IsTransient()

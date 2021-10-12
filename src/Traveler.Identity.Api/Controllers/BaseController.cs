@@ -6,7 +6,7 @@ using Traveler.Identity.Domain.Exceptions;
 
 namespace Traveler.Identity.Api.Controllers
 {
-	[Route("your-project-name/[controller]/v{version:apiVersion}")]
+	[Route("traveler/[controller]/v{version:apiVersion}")]
 	[ServiceFilter(typeof(GlobalExceptionFilterAttribute))]
 	public class BaseController : Controller
 	{
@@ -21,7 +21,7 @@ namespace Traveler.Identity.Api.Controllers
 
 		protected bool IsValidOperation()
 		{
-			return (!_notifications.HasNotifications());
+			return !_notifications.HasNotifications();
 		}
 
 		protected new IActionResult Response(IActionResult action)

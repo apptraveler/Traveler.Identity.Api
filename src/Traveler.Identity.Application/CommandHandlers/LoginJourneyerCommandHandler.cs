@@ -29,7 +29,7 @@ namespace Traveler.Identity.Application.CommandHandlers
 
         public async Task<LoginJourneyerResponse> Handle(LoginJourneyerCommand request, CancellationToken cancellationToken)
         {
-            var journeyer = await _journeyerRepository.GetByEmailOrUsername(request.UsernameOrEmail);
+            var journeyer = await _journeyerRepository.GetByEmailOrUsernameAsync(request.UsernameOrEmail);
 
             if (journeyer is null)
             {

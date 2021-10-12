@@ -1,3 +1,4 @@
+using System;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,29 +14,50 @@ namespace Traveler.Identity.Application.CommandHandlers
     public class RegisterJourneyerCommandHandler : CommandHandler, IRequestHandler<RegisterJourneyerCommand, RegisterJourneyerResponse>
     {
         private readonly IAuthorizationService _authorizationService;
+        private readonly IJourneyerRepository _journeyerRepository;
 
         public RegisterJourneyerCommandHandler(
             IUnitOfWork uow,
             IMediator bus,
             INotificationHandler<ExceptionNotification> notifications,
-            IAuthorizationService authorizationService
+            IAuthorizationService authorizationService,
+            IJourneyerRepository journeyerRepository
         ) : base(uow, bus, notifications)
         {
             _authorizationService = authorizationService;
+            _journeyerRepository = journeyerRepository;
         }
 
         public async Task<RegisterJourneyerResponse> Handle(RegisterJourneyerCommand request, CancellationToken cancellationToken)
         {
-            var journeyer = new Journeyer(request.Email, request.Username, request.Password);
+            try
+            {
+                var journeyer = await _journeyerRepository.GetByEmailOrUsernameAsync(request.Email);
 
-            var token = _authorizationService.GenerateToken(journeyer);
-            
-            // add database
+                if (journeyer is not null)
+                {
+                    await Bus.Publish(new ExceptionNotification("003", "Este email já está cadastrado"), cancellationToken);
+                    return default;
+                }
 
-            if (await Commit()) return new RegisterJourneyerResponse(token);
-            
-            await Bus.Publish(new ExceptionNotification("001", "Não foi possível efetuar o cadastro"), cancellationToken);
-            return default;
+                journeyer = new Journeyer(request.Email, request.Username, request.Password);
+
+                _journeyerRepository.Add(journeyer);
+
+                if (!await Commit())
+                {
+                    await Bus.Publish(new ExceptionNotification("001", "Não foi possível efetuar o cadastro"), cancellationToken);
+                    return default;
+                }
+
+                var token = _authorizationService.GenerateToken(journeyer);
+                return new RegisterJourneyerResponse(token);
+            }
+            catch (Exception e)
+            {
+                await Bus.Publish(new ExceptionNotification("004", "Ocorreu um erro ao registrar um usuário"), cancellationToken);
+                return default;
+            }
         }
     }
 }
