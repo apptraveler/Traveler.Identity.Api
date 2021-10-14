@@ -37,9 +37,20 @@ namespace Traveler.Identity.Application.CommandHandlers
                 return default;
             }
 
+            if (journeyer.IsFirstLogin)
+            {
+                journeyer.SetLoggedOnce();
+
+                if (!await Commit())
+                {
+                    await Bus.Publish(new ExceptionNotification("002", "Usuário não encontrado"), cancellationToken);
+                    return default;
+                }
+            }
+
             var token = _authorizationService.GenerateToken(journeyer);
 
-            return new LoginJourneyerResponse(token);
+            return new LoginJourneyerResponse(token, journeyer.IsFirstLogin);
         }
     }
 }

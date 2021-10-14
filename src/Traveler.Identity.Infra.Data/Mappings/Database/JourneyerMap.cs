@@ -24,13 +24,18 @@ namespace Traveler.Identity.Infra.Data.Mappings.Database
 
             builder.Property(journeyer => journeyer.Username)
                 .UsePropertyAccessMode(PropertyAccessMode.Field)
-                .HasColumnName("journeyername")
+                .HasColumnName("username")
                 .HasMaxLength(100)
                 .IsRequired();
 
             builder.Property(journeyer => journeyer.Password)
                 .UsePropertyAccessMode(PropertyAccessMode.Field)
                 .HasColumnName("password")
+                .IsRequired();
+            
+            builder.Property(journeyer => journeyer.IsFirstLogin)
+                .UsePropertyAccessMode(PropertyAccessMode.Field)
+                .HasColumnName("isFirstLogin")
                 .IsRequired();
         }
     }
