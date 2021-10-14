@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
-using Microsoft.Extensions.Caching.Memory;
 using Traveler.Identity.Domain.Exceptions;
 
 namespace Traveler.Identity.Application.Behaviour
 {
     public class PipelineBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
     {
-        private readonly IEnumerable<IValidator> _validators;
+        private readonly IEnumerable<IValidator<TRequest>> _validators;
         private readonly IMediator _bus;
 
         public PipelineBehaviour(IEnumerable<IValidator<TRequest>> validators, IMediator bus)
@@ -34,7 +32,7 @@ namespace Traveler.Identity.Application.Behaviour
         private bool ValidateRequest(TRequest request)
         {
             var failures = _validators
-                .Select(v => v.Validate((IValidationContext)request))
+                .Select(v => v.Validate(request))
                 .SelectMany(result => result.Errors)
                 .Where(f => f != null)
                 .ToList();

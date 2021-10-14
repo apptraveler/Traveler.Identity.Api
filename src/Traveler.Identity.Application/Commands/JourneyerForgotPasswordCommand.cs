@@ -1,5 +1,6 @@
 using MediatR;
 using Traveler.Identity.Application.DTOs;
+using Traveler.Identity.Application.Validations;
 
 namespace Traveler.Identity.Application.Commands
 {
@@ -14,7 +15,8 @@ namespace Traveler.Identity.Application.Commands
 
         public override bool IsValid()
         {
-            return true;
+            var isValidResult = new JourneyerForgotPasswordCommandValidation().Validate(this);
+            return isValidResult.IsValid;
         }
     }
 }
