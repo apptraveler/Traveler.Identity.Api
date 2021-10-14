@@ -40,13 +40,13 @@ namespace Traveler.Identity.Application.CommandHandlers
                     return default;
                 }
 
-                journeyer = new Journeyer(request.Email, request.Username, request.Password);
+                journeyer = new Journeyer(request.Email, request.Username, request.Password, false);
 
                 _journeyerRepository.Add(journeyer);
 
                 if (!await Commit())
                 {
-                    await Bus.Publish(new ExceptionNotification("001", "Não foi possível efetuar o cadastro"), cancellationToken);
+                    await Bus.Publish(new ExceptionNotification("004", "Não foi possível efetuar o cadastro"), cancellationToken);
                     return default;
                 }
 
