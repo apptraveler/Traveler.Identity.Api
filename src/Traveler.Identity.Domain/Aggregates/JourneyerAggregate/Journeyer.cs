@@ -25,7 +25,7 @@ namespace Traveler.Identity.Domain.Aggregates.JourneyerAggregate
 
         public void SetLoggedOnce()
         {
-            IsFirstLogin = true;
+            IsFirstLogin = false;
         }
 
         public void UpdateUserEmail(string email)

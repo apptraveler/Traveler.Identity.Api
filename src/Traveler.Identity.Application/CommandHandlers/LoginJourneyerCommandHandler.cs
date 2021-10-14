@@ -37,7 +37,7 @@ namespace Traveler.Identity.Application.CommandHandlers
                 return default;
             }
 
-            if (!journeyer.IsFirstLogin)
+            if (journeyer.IsFirstLogin)
             {
                 journeyer.SetLoggedOnce();
 

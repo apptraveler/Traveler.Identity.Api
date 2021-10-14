@@ -40,7 +40,7 @@ namespace Traveler.Identity.Application.CommandHandlers
                     return default;
                 }
 
-                journeyer = new Journeyer(request.Email, request.Username, request.Password, false);
+                journeyer = new Journeyer(request.Email, request.Username, request.Password, true);
 
                 _journeyerRepository.Add(journeyer);
 
