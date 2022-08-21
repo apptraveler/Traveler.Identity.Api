@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <LangVersion>10</LangVersion>
+        <RootNamespace>Traveler.Identity.Api.Application</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="11.0.1" />
+        <PackageReference Include="FluentValidation" Version="11.0.1" />
+        <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="6.0.8" />
+        <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.22.0" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\Traveler.Identity.Api.Domain\Traveler.Identity.Api.Domain.csproj" />
+      <ProjectReference Include="..\Traveler.Identity.Api.Infra.CrossCutting.Environments\Traveler.Identity.Api.Infra.CrossCutting.Environments.csproj" />
+    </ItemGroup>
+
+</Project>
