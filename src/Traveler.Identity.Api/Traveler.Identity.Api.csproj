@@ -17,7 +17,7 @@
     <ItemGroup>
       <ProjectReference Include="..\Traveler.Identity.Api.Application\Traveler.Identity.Api.Application.csproj" />
       <ProjectReference Include="..\Traveler.Identity.Api.Domain\Traveler.Identity.Api.Domain.csproj" />
-      <ProjectReference Include="..\traveler.identity.api.infra.CrossCutting.IoC\traveler.identity.api.infra.CrossCutting.IoC.csproj" />
+      <ProjectReference Include="..\Traveler.Identity.Api.Infra.CrossCutting.IoC\Traveler.Identity.Api.Infra.CrossCutting.IoC.csproj" />
     </ItemGroup>
 
 </Project>

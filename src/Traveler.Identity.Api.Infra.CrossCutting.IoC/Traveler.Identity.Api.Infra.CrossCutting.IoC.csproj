@@ -23,7 +23,7 @@
         <ProjectReference Include="..\Traveler.Identity.Api.Application\Traveler.Identity.Api.Application.csproj" />
         <ProjectReference Include="..\Traveler.Identity.Api.Infra.CrossCutting.Environments\Traveler.Identity.Api.Infra.CrossCutting.Environments.csproj" />
         <ProjectReference Include="..\Traveler.Identity.Api.Infra.CrossCutting.Identity\Traveler.Identity.Api.Infra.CrossCutting.Identity.csproj" />
-        <ProjectReference Include="..\traveler.identity.api.infra.Data\traveler.identity.api.infra.Data.csproj" />
+        <ProjectReference Include="..\Traveler.Identity.Api.Infra.Data\Traveler.Identity.Api.Infra.Data.csproj" />
     </ItemGroup>
 
 </Project>
