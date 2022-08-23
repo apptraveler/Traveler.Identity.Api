@@ -15,10 +15,15 @@ public static class HealthCheckSetup
     {
         var hcBuilder = services.AddHealthChecks();
 
-        hcBuilder.AddCheck("Self Check API", () => HealthCheckResult.Healthy("HealthCheck Working"));
-        // ADD OTHER CHECKS HERE
+        var applicationConfiguration = configuration.GetSection(nameof(ApplicationConfiguration)).Get<ApplicationConfiguration>();
 
-        hcBuilder.AddCheck<RequiredSectionsHealthCheck<ApplicationConfiguration>>(nameof(ApplicationConfiguration));
+        hcBuilder.AddCheck("Self Check API", () => HealthCheckResult.Healthy("HealthCheck Working"));
+
+        hcBuilder.AddSqlite(applicationConfiguration.ConnectionString);
+
+        hcBuilder
+            .AddCheck<RequiredSectionsHealthCheck<ApplicationConfiguration>>(nameof(ApplicationConfiguration))
+            .AddCheck<RequiredSectionsHealthCheck<JwtConfiguration>>(nameof(JwtConfiguration));
     }
 
     public static void MapHealthCheck(this IEndpointRouteBuilder endpoints)

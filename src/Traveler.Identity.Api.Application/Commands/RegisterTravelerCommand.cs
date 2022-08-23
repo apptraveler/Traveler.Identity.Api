@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Traveler.Identity.Api.Application.Dtos;
 using Traveler.Identity.Api.Application.Validations;
 
@@ -27,6 +28,6 @@ public class RegisterTravelerCommand : Command<RegisterResponse>
 
     public DateTime GetFormattedDate()
     {
-        return DateTime.Parse(BirthDate);
+        return DateTime.Parse(BirthDate, new CultureInfo("pt-BR"));
     }
 }
