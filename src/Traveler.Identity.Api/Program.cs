@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 using MediatR;
 using Traveler.Identity.Api.Filters;
@@ -17,7 +18,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog();
 
-builder.WebHost.UseUrls("http://*:5000");
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+builder.WebHost.UseUrls("http://*:" + port);
 
 builder.Services.AddCustomLogging(builder.Configuration);
 builder.Services.AddCustomAuthentication();
