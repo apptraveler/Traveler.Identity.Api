@@ -2,6 +2,7 @@ using System.Reflection;
 using MediatR;
 using Traveler.Identity.Api.Filters;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +16,8 @@ using Traveler.Identity.Api.Application.CommandHandlers;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog();
+
+builder.WebHost.UseUrls("http://*:5000");
 
 builder.Services.AddCustomLogging(builder.Configuration);
 builder.Services.AddCustomAuthentication();
