@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -6,7 +7,9 @@ using Microsoft.Extensions.Logging;
 using Traveler.Identity.Api.Application.Dtos;
 using Traveler.Identity.Api.Application.Queries;
 using Traveler.Identity.Api.Domain.Aggregates.TravelerAggregate;
+using Traveler.Identity.Api.Domain.Aggregates.TravelerLocationAggregate;
 using Traveler.Identity.Api.Domain.Exceptions;
+using Traveler.Identity.Api.Domain.SeedWork;
 using Traveler.Identity.Api.Infra.CrossCutting.Environments.Configurations;
 
 namespace Traveler.Identity.Api.Application.QueryHandlers;
@@ -14,19 +17,16 @@ namespace Traveler.Identity.Api.Application.QueryHandlers;
 public class GetTravelerInformationByIdQueryHandler : QueryHandler<GetTravelerInformationByIdQuery, TravelerInformation>
 {
     private readonly ITravelerRepository _travelerRepository;
+    private readonly ITravelerLocationRepository _travelerLocationRepository;
     private readonly IMediator _bus;
     private readonly ILogger<GetTravelerInformationByIdQueryHandler> _logger;
 
-    public GetTravelerInformationByIdQueryHandler(
-        ApplicationConfiguration applicationConfiguration,
-        ITravelerRepository travelerRepository,
-        IMediator bus,
-        ILogger<GetTravelerInformationByIdQueryHandler> logger
-    ) : base(applicationConfiguration)
+    public GetTravelerInformationByIdQueryHandler(ApplicationConfiguration applicationConfiguration, ITravelerRepository travelerRepository, ITravelerLocationRepository travelerLocationRepository, IMediator bus, ILogger<GetTravelerInformationByIdQueryHandler> logger) : base(applicationConfiguration)
     {
         _travelerRepository = travelerRepository;
-        _logger = logger;
+        _travelerLocationRepository = travelerLocationRepository;
         _bus = bus;
+        _logger = logger;
     }
 
     public override async Task<TravelerInformation> Handle(GetTravelerInformationByIdQuery request, CancellationToken cancellationToken)
@@ -41,7 +41,10 @@ public class GetTravelerInformationByIdQueryHandler : QueryHandler<GetTravelerIn
                 return default;
             }
 
-            return new TravelerInformation(traveler.Email, traveler.FullName, traveler.BirthDate);
+            var travelerLocations = await _travelerLocationRepository.GetAllByTravelerId(traveler.Id);
+            var locationTags = travelerLocations.Select(travelerLocation => Enumeration.FromId<TravelerLocationTags>(travelerLocation.LocationId));
+
+            return new TravelerInformation(traveler.Email, traveler.FullName, traveler.Profile, traveler.AverageSpend, locationTags.ToArray());
         }
         catch (Exception e)
         {

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Traveler.Identity.Api.Application.Adapters.TokenManager;
 using Traveler.Identity.Api.Domain.Aggregates.TravelerAggregate;
+using Traveler.Identity.Api.Domain.Aggregates.TravelerLocationAggregate;
 using Traveler.Identity.Api.Domain.SeedWork;
 using Traveler.Identity.Api.Infra.CrossCutting.Identity;
 using Traveler.Identity.Api.Infra.Data.Repositories;
@@ -29,6 +30,7 @@ public static class NativeInjectorBootstrapper
     {
         services.AddMemoryCache();
         services.AddScoped<ITravelerRepository, TravelerRepository>();
+        services.AddScoped<ITravelerLocationRepository, TravelerLocationRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
     }
 

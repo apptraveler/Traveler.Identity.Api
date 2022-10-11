@@ -1,5 +1,4 @@
 using System;
-using System.Reflection;
 using MediatR;
 using Traveler.Identity.Api.Filters;
 using Microsoft.AspNetCore.Builder;

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using Traveler.Identity.Api.Application.Dtos;
 using Traveler.Identity.Api.Application.Validations;
 
@@ -9,15 +8,16 @@ public class RegisterTravelerCommand : Command<RegisterResponse>
 {
     public string Email { get; }
     public string FullName { get; }
-    public string Password { get; }
-    public string BirthDate { get; }
 
-    public RegisterTravelerCommand(string email, string fullName, string password, string birthDate)
+    public string Password { get; }
+    // public string BirthDate { get; }
+
+    public RegisterTravelerCommand(string email, string fullName, string password)
     {
         Email = email;
         FullName = fullName;
         Password = password;
-        BirthDate = birthDate;
+        // BirthDate = birthDate;
     }
 
     public override bool IsValid()
@@ -26,8 +26,8 @@ public class RegisterTravelerCommand : Command<RegisterResponse>
         return ValidationResult.IsValid;
     }
 
-    public DateTime GetFormattedDate()
-    {
-        return DateTime.Parse(BirthDate, new CultureInfo("pt-BR"));
-    }
+    // public DateTime GetFormattedDate()
+    // {
+    //     return DateTime.Parse(BirthDate, new CultureInfo("pt-BR"));
+    // }
 }

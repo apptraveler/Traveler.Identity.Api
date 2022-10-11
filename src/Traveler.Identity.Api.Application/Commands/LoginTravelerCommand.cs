@@ -1,5 +1,4 @@
-﻿using MediatR;
-using Traveler.Identity.Api.Application.Dtos;
+﻿using Traveler.Identity.Api.Application.Dtos;
 using Traveler.Identity.Api.Application.Validations;
 
 namespace Traveler.Identity.Api.Application.Commands;

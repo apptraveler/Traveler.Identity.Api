@@ -3,9 +3,11 @@
 public class LoginResponse
 {
     public string Token { get; }
+    public bool TravelProfileCreated { get; }
 
-    public LoginResponse(string token)
+    public LoginResponse(string token, bool travelProfileCreated)
     {
         Token = token;
+        TravelProfileCreated = travelProfileCreated;
     }
 }

@@ -44,7 +44,7 @@ public class RegisterTravelerCommandHandler : CommandHandler<RegisterTravelerCom
                 return default;
             }
 
-            var traveler = new Domain.Aggregates.TravelerAggregate.Traveler(request.Email, request.FullName, request.Password, request.GetFormattedDate());
+            var traveler = new Domain.Aggregates.TravelerAggregate.Traveler(request.Email, request.FullName, request.Password);
 
             _travelerRepository.Add(traveler);
 

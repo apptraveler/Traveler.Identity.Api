@@ -35,6 +35,10 @@ public class ApplicationDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new TravelerMap());
+        modelBuilder.ApplyConfiguration(new TravelerProfileMap());
+        modelBuilder.ApplyConfiguration(new TravelerLocationMap());
+        modelBuilder.ApplyConfiguration(new TravelerAverageSpendMap());
+        modelBuilder.ApplyConfiguration(new TravelerLocationTagsMap());
     }
 
     public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default(CancellationToken))

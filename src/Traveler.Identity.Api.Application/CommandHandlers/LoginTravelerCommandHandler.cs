@@ -53,7 +53,7 @@ public class LoginTravelerCommandHandler : CommandHandler<LoginTravelerCommand, 
 
             var token = _tokenManager.Generate(traveler);
 
-            return new LoginResponse(token);
+            return new LoginResponse(token, traveler.HasTravelProfile());
         }
         catch (Exception e)
         {

@@ -8,8 +8,8 @@ namespace Traveler.Identity.Api.Domain.SeedWork;
 
 public abstract class Enumeration
 {
-    public string Name { get; }
-    public int Id { get; }
+    public string Name { get; set; }
+    public int Id { get; set;  }
 
     protected Enumeration(int id, string name)
     {

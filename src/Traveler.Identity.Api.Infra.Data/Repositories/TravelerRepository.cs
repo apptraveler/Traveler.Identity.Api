@@ -14,11 +14,17 @@ public class TravelerRepository : Repository<Domain.Aggregates.TravelerAggregate
 
     public async Task<Domain.Aggregates.TravelerAggregate.Traveler> GetByEmailAsync(string email)
     {
-        return await DbSet.SingleOrDefaultAsync(t => t.Email.Equals(email));
+        return await DbSet
+            .Include(t => t.AverageSpend)
+            .Include(t => t.Profile)
+            .SingleOrDefaultAsync(t => t.Email.Equals(email));
     }
 
     public async Task<Domain.Aggregates.TravelerAggregate.Traveler> GetByIdAsync(Guid id)
     {
-        return await DbSet.FindAsync(id);
+        return await DbSet
+            .Include(t => t.AverageSpend)
+            .Include(t => t.Profile)
+            .FirstOrDefaultAsync(t => t.Id.Equals(id));
     }
 }

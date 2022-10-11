@@ -1,5 +1,4 @@
-﻿using System;
-using FluentValidation;
+﻿using FluentValidation;
 using Traveler.Identity.Api.Application.Commands;
 
 namespace Traveler.Identity.Api.Application.Validations;
@@ -11,7 +10,7 @@ public class RegisterTravelerCommandValidation : AbstractValidator<RegisterTrave
         ValidateEmail();
         ValidatePassword();
         ValidateFullName();
-        ValidateBirthDate();
+        // ValidateBirthDate();
     }
 
     private void ValidateEmail()
@@ -41,12 +40,12 @@ public class RegisterTravelerCommandValidation : AbstractValidator<RegisterTrave
             .WithMessage("O nome completo deve ser informado");
     }
 
-    private void ValidateBirthDate()
-    {
-        RuleFor(c => c.GetFormattedDate())
-            .Must(birthDate => DateTime.UtcNow.CompareTo(birthDate) > 0)
-            .WithErrorCode("88")
-            .WithMessage("Informe uma data de nascimento válida")
-            .OverridePropertyName(c => c.BirthDate);
-    }
+    // private void ValidateBirthDate()
+    // {
+    //     RuleFor(c => c.GetFormattedDate())
+    //         .Must(birthDate => DateTime.UtcNow.CompareTo(birthDate) > 0)
+    //         .WithErrorCode("88")
+    //         .WithMessage("Informe uma data de nascimento válida")
+    //         .OverridePropertyName(c => c.BirthDate);
+    // }
 }

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Traveler.Identity.Api.Domain.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.JsonWebTokens;
 using Traveler.Identity.Api.Application.Commands;
 using Traveler.Identity.Api.Application.Dtos;
-using Traveler.Identity.Api.Application.Queries;
 using Traveler.Identity.Api.Dtos;
 
 namespace Traveler.Identity.Api.Controllers.V1;
@@ -38,15 +34,5 @@ public class AuthenticationController : BaseController
     {
         var result = await _bus.Send(loginTravelerCommand);
         return Response(Ok(new Response<LoginResponse>(result)));
-    }
-
-    [HttpGet("user-information")]
-    [ProducesResponseType(typeof(Response<TravelerInformation>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetUserInformation()
-    {
-        var travelerId = GetUserClaim(JwtRegisteredClaimNames.Sub);
-        var query = new GetTravelerInformationByIdQuery(Guid.Parse(travelerId));
-        var result = await _bus.Send(query);
-        return Response(Ok(new Response<TravelerInformation>(result)));
     }
 }

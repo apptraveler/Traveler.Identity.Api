@@ -31,10 +31,10 @@ public class TravelerMap : IEntityTypeConfiguration<Domain.Aggregates.TravelerAg
             .HasColumnName("FullName")
             .IsRequired();
 
-        builder.Property(traveler => traveler.BirthDate)
-            .UsePropertyAccessMode(PropertyAccessMode.Field)
-            .HasColumnName("BirthDate")
-            .IsRequired();
+        // builder.Property(traveler => traveler.BirthDate)
+        //     .UsePropertyAccessMode(PropertyAccessMode.Field)
+        //     .HasColumnName("BirthDate")
+        //     .IsRequired();
 
         builder.Property(traveler => traveler.CreatedAt)
             .UsePropertyAccessMode(PropertyAccessMode.Field)
