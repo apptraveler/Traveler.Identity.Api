@@ -49,10 +49,10 @@ public class Traveler : Entity, IAggregateRoot
         return Profile is not null;
     }
 
-    public void SetTravelProfile(Guid profileId, TravelerAverageSpend averageSpend, IReadOnlyCollection<TravelerLocationTags> locationTags)
+    public void SetTravelProfile(Guid profileId, int averageSpendId, IReadOnlyCollection<TravelerLocationTags> locationTags)
     {
         ProfileId = profileId;
-        AverageSpend = averageSpend;
+        AverageSpendId = averageSpendId;
 
         AddDomainEvent(new SaveUserLocationsPreferencesDomainEvent(Id, locationTags));
     }

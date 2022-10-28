@@ -43,9 +43,8 @@ public class SetTravelerProfileCommandHandler : CommandHandler<SetTravelerProfil
             }
 
             var locationTags = request.LocationTagsIds.Select(Enumeration.FromId<TravelerLocationTags>).ToArray();
-            var averageSpend = Enumeration.FromId<TravelerAverageSpend>(request.AverageSpendId);
 
-            traveler.SetTravelProfile(request.ProfileId, averageSpend, locationTags);
+            traveler.SetTravelProfile(request.ProfileId, request.AverageSpendId, locationTags);
 
             if (await CommitAsync() is false)
             {
