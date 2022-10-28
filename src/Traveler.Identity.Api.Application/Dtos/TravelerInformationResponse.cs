@@ -31,6 +31,7 @@ public class TravelerProfileDto
 
     public TravelerProfileDto(Guid id, string name, string description)
     {
+        Id = id;
         Name = name;
         Description = description;
     }
