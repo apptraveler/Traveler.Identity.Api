@@ -1,4 +1,5 @@
-﻿using Traveler.Identity.Api.Domain.Aggregates.TravelerAggregate;
+﻿using System;
+using Traveler.Identity.Api.Domain.Aggregates.TravelerAggregate;
 using Traveler.Identity.Api.Domain.Aggregates.TravelerLocationAggregate;
 using Traveler.Identity.Api.Domain.Aggregates.TravelerProfileAggregate;
 
@@ -12,11 +13,11 @@ public class TravelerInformationResponse
     public TravelerAverageSpend AverageSpend { get; }
     public TravelerLocationTags[] LocationTags { get; }
 
-    public TravelerInformationResponse(string email, string fullName, string profileName, string profileDescription, TravelerAverageSpend averageSpend, TravelerLocationTags[] locationTags = default)
+    public TravelerInformationResponse(string email, string fullName, Guid profileId, string profileName, string profileDescription, TravelerAverageSpend averageSpend, TravelerLocationTags[] locationTags = default)
     {
         Email = email;
         FullName = fullName;
-        Profile = new TravelerProfileDto(profileName, profileDescription);
+        Profile = new TravelerProfileDto(profileId, profileName, profileDescription);
         AverageSpend = averageSpend;
         LocationTags = locationTags;
     }
@@ -24,10 +25,11 @@ public class TravelerInformationResponse
 
 public class TravelerProfileDto
 {
+    public Guid Id { get; }
     public string Name { get; }
     public string Description { get; }
 
-    public TravelerProfileDto(string name, string description)
+    public TravelerProfileDto(Guid id, string name, string description)
     {
         Name = name;
         Description = description;
