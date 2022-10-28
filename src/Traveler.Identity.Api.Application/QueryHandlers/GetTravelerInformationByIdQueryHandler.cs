@@ -14,7 +14,7 @@ using Traveler.Identity.Api.Infra.CrossCutting.Environments.Configurations;
 
 namespace Traveler.Identity.Api.Application.QueryHandlers;
 
-public class GetTravelerInformationByIdQueryHandler : QueryHandler<GetTravelerInformationByIdQuery, TravelerInformation>
+public class GetTravelerInformationByIdQueryHandler : QueryHandler<GetTravelerInformationByIdQuery, TravelerInformationResponse>
 {
     private readonly ITravelerRepository _travelerRepository;
     private readonly ITravelerLocationRepository _travelerLocationRepository;
@@ -29,7 +29,7 @@ public class GetTravelerInformationByIdQueryHandler : QueryHandler<GetTravelerIn
         _logger = logger;
     }
 
-    public override async Task<TravelerInformation> Handle(GetTravelerInformationByIdQuery request, CancellationToken cancellationToken)
+    public override async Task<TravelerInformationResponse> Handle(GetTravelerInformationByIdQuery request, CancellationToken cancellationToken)
     {
         try
         {
@@ -44,7 +44,7 @@ public class GetTravelerInformationByIdQueryHandler : QueryHandler<GetTravelerIn
             var travelerLocations = await _travelerLocationRepository.GetAllByTravelerId(traveler.Id);
             var locationTags = travelerLocations.Select(travelerLocation => Enumeration.FromId<TravelerLocationTags>(travelerLocation.LocationId));
 
-            return new TravelerInformation(traveler.Email, traveler.FullName, traveler.Profile, traveler.AverageSpend, locationTags.ToArray());
+            return new TravelerInformationResponse(traveler.Email, traveler.FullName, traveler.Profile.Name, traveler.Profile.Description, traveler.AverageSpend, locationTags.ToArray());
         }
         catch (Exception e)
         {

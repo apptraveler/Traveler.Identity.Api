@@ -11,15 +11,15 @@ using Traveler.Identity.Api.Infra.CrossCutting.Environments.Configurations;
 
 namespace Traveler.Identity.Api.Application.QueryHandlers;
 
-public class GetTravelerProfilesQueryHandler : QueryHandler<GetAllTravelerProfilesQuery, IEnumerable<TravelerProfilesResponse>>
+public class GetAllTravelerProfilesQueryHandler : QueryHandler<GetAllTravelerProfilesQuery, IEnumerable<TravelerProfilesResponse>>
 {
     private readonly ITravelerProfileRepository _travelerProfileRepository;
-    private readonly ILogger<GetTravelerProfilesQueryHandler> _logger;
+    private readonly ILogger<GetAllTravelerProfilesQueryHandler> _logger;
 
-    public GetTravelerProfilesQueryHandler(
+    public GetAllTravelerProfilesQueryHandler(
         ApplicationConfiguration applicationConfiguration,
         ITravelerProfileRepository travelerProfileRepository,
-        ILogger<GetTravelerProfilesQueryHandler> logger
+        ILogger<GetAllTravelerProfilesQueryHandler> logger
     ) : base(applicationConfiguration)
     {
         _travelerProfileRepository = travelerProfileRepository;
@@ -38,7 +38,7 @@ public class GetTravelerProfilesQueryHandler : QueryHandler<GetAllTravelerProfil
                 return default;
             }
 
-            return profiles.Select(x => new TravelerProfilesResponse(x.Name, x.Description)).ToList();
+            return profiles.Select(x => new TravelerProfilesResponse(x.Id, x.Name, x.Description)).ToList();
         }
         catch (Exception e)
         {

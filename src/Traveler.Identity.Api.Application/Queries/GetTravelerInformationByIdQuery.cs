@@ -4,7 +4,7 @@ using Traveler.Identity.Api.Application.Validations;
 
 namespace Traveler.Identity.Api.Application.Queries;
 
-public class GetTravelerInformationByIdQuery : Query<TravelerInformation>
+public class GetTravelerInformationByIdQuery : Query<TravelerInformationResponse>
 {
     public Guid TravelerId { get; }
 

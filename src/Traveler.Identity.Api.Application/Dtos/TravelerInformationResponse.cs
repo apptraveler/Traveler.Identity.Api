@@ -4,7 +4,7 @@ using Traveler.Identity.Api.Domain.Aggregates.TravelerProfileAggregate;
 
 namespace Traveler.Identity.Api.Application.Dtos;
 
-public class TravelerInformationDto
+public class TravelerInformationResponse
 {
     public string Email { get; }
     public string FullName { get; }
@@ -12,7 +12,7 @@ public class TravelerInformationDto
     public TravelerAverageSpend AverageSpend { get; }
     public TravelerLocationTags[] LocationTags { get; }
 
-    public TravelerInformationDto(string email, string fullName, string profileName, string profileDescription, TravelerAverageSpend averageSpend, TravelerLocationTags[] locationTags = default)
+    public TravelerInformationResponse(string email, string fullName, string profileName, string profileDescription, TravelerAverageSpend averageSpend, TravelerLocationTags[] locationTags = default)
     {
         Email = email;
         FullName = fullName;

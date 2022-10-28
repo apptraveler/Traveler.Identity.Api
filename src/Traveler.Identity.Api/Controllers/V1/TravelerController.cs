@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Traveler.Identity.Api.Domain.Exceptions;
@@ -35,7 +36,7 @@ public class TravelerController : BaseController
         var userId = GetUserClaim(CustomClaims.UserId);
         var command = new SetTravelerProfileCommand(
             Guid.Parse(userId),
-            Convert.ToInt32(setTravelerProfileRequest.ProfileId),
+            setTravelerProfileRequest.ProfileId,
             Convert.ToInt32(setTravelerProfileRequest.AverageSpendId),
             setTravelerProfileRequest.LocationTagsIds.Select(a => Convert.ToInt32(a)).ToArray()
         );
@@ -44,12 +45,21 @@ public class TravelerController : BaseController
     }
 
     [HttpGet("information")]
-    [ProducesResponseType(typeof(Response<TravelerInformation>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Response<TravelerInformationResponse>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetUserInformation()
     {
         var travelerId = GetUserClaim(CustomClaims.UserId);
         var query = new GetTravelerInformationByIdQuery(Guid.Parse(travelerId));
         var result = await _bus.Send(query);
-        return Response(Ok(new Response<TravelerInformation>(result)));
+        return Response(Ok(new Response<TravelerInformationResponse>(result)));
+    }
+
+    [HttpGet("profiles")]
+    [ProducesResponseType(typeof(Response<IEnumerable<TravelerProfilesResponse>>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetAllProfiles()
+    {
+        var query = new GetAllTravelerProfilesQuery();
+        var result = await _bus.Send(query);
+        return Response(Ok(new Response<IEnumerable<TravelerProfilesResponse>>(result)));
     }
 }

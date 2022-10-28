@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Traveler.Identity.Api.Domain.Aggregates.TravelerLocationAggregate;
+using Traveler.Identity.Api.Domain.Aggregates.TravelerProfileAggregate;
 using Traveler.Identity.Api.Domain.Events;
 using Traveler.Identity.Api.Domain.SeedWork;
 
@@ -12,12 +13,17 @@ public class Traveler : Entity, IAggregateRoot
     public string FullName { get; }
     public string Password { get; }
     public byte[] Salt { get; }
-    public TravelerProfile Profile { get; private set; }
-    public TravelerAverageSpend AverageSpend { get; private set; }
 
     // public DateTime BirthDate { get; }
+
+    private Guid? ProfileId { get; set; }
+    private int? AverageSpendId { get; set; }
+
     public DateTime CreatedAt { get; }
     public DateTime UpdatedAt { get; }
+
+    public virtual TravelerProfile Profile { get; private set; }
+    public virtual TravelerAverageSpend AverageSpend { get; private set; }
 
     public Traveler(string email, string fullName, string password)
     {
@@ -43,9 +49,9 @@ public class Traveler : Entity, IAggregateRoot
         return Profile is not null;
     }
 
-    public void SetTravelProfile(TravelerProfile profile, TravelerAverageSpend averageSpend, IReadOnlyCollection<TravelerLocationTags> locationTags)
+    public void SetTravelProfile(Guid profileId, TravelerAverageSpend averageSpend, IReadOnlyCollection<TravelerLocationTags> locationTags)
     {
-        Profile = profile;
+        ProfileId = profileId;
         AverageSpend = averageSpend;
 
         AddDomainEvent(new SaveUserLocationsPreferencesDomainEvent(Id, locationTags));

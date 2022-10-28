@@ -42,11 +42,10 @@ public class SetTravelerProfileCommandHandler : CommandHandler<SetTravelerProfil
                 return Unit.Value;
             }
 
-            var profile = Enumeration.FromId<TravelerProfile>(request.ProfileId);
             var locationTags = request.LocationTagsIds.Select(Enumeration.FromId<TravelerLocationTags>).ToArray();
             var averageSpend = Enumeration.FromId<TravelerAverageSpend>(request.AverageSpendId);
 
-            traveler.SetTravelProfile(profile, averageSpend, locationTags);
+            traveler.SetTravelProfile(request.ProfileId, averageSpend, locationTags);
 
             if (await CommitAsync() is false)
             {
@@ -59,6 +58,7 @@ public class SetTravelerProfileCommandHandler : CommandHandler<SetTravelerProfil
         catch (Exception e)
         {
             _logger.LogCritical("Ocorreu um erro ao salvar o estilo de perfil do o usuário {0} #### Exception: {1} ####", request.UserId, e.ToString());
+            await Bus.Publish(new ExceptionNotification("110-UnknownError", "Ocorreu um erro ao processar a requisição"), cancellationToken);
             return Unit.Value;
         }
     }

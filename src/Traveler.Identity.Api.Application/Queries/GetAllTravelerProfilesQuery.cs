@@ -3,7 +3,7 @@ using Traveler.Identity.Api.Application.Dtos;
 
 namespace Traveler.Identity.Api.Application.Queries;
 
-public class GetTravelerProfilesQuery : Query<IEnumerable<TravelerProfilesResponse>>
+public class GetAllTravelerProfilesQuery : Query<IEnumerable<TravelerProfilesResponse>>
 {
     public override bool IsValid() => true;
 }
