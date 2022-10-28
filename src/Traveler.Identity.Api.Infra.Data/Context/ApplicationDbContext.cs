@@ -13,7 +13,6 @@ public class ApplicationDbContext : DbContext
     private readonly ApplicationConfiguration _applicationConfiguration;
     private readonly IMediator _bus;
 
-
     public ApplicationDbContext(ApplicationConfiguration applicationConfiguration)
     {
         _applicationConfiguration = applicationConfiguration;

@@ -36,6 +36,14 @@ public class TravelerMap : IEntityTypeConfiguration<Domain.Aggregates.TravelerAg
         //     .HasColumnName("BirthDate")
         //     .IsRequired();
 
+        builder.Property("ProfileId")
+            .UsePropertyAccessMode(PropertyAccessMode.Field)
+            .HasColumnName("ProfileId");
+
+        builder.Property("AverageSpendId")
+            .UsePropertyAccessMode(PropertyAccessMode.Field)
+            .HasColumnName("AverageSpendId");
+
         builder.Property(traveler => traveler.CreatedAt)
             .UsePropertyAccessMode(PropertyAccessMode.Field)
             .HasColumnName("CreatedAt")
@@ -45,5 +53,19 @@ public class TravelerMap : IEntityTypeConfiguration<Domain.Aggregates.TravelerAg
             .UsePropertyAccessMode(PropertyAccessMode.Field)
             .HasColumnName("UpdatedAt")
             .IsRequired();
+
+        #region Relations
+
+        builder.HasOne(x => x.Profile)
+            .WithOne()
+            .HasForeignKey<Domain.Aggregates.TravelerAggregate.Traveler>("ProfileId")
+            .IsRequired(false);
+
+        builder.HasOne(x => x.AverageSpend)
+            .WithOne()
+            .HasForeignKey<Domain.Aggregates.TravelerAggregate.Traveler>("AverageSpendId")
+            .IsRequired(false);
+
+        #endregion
     }
 }
