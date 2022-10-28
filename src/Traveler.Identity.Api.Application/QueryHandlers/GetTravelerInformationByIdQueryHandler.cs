@@ -44,7 +44,7 @@ public class GetTravelerInformationByIdQueryHandler : QueryHandler<GetTravelerIn
             var travelerLocations = await _travelerLocationRepository.GetAllByTravelerId(traveler.Id);
             var locationTags = travelerLocations.Select(travelerLocation => Enumeration.FromId<TravelerLocationTags>(travelerLocation.LocationId));
 
-            return new TravelerInformationResponse(traveler.Email, traveler.FullName, traveler.Profile.Id, traveler.Profile.Name, traveler.Profile.Description, traveler.AverageSpend, locationTags.ToArray());
+            return new TravelerInformationResponse(traveler.Email, traveler.FullName, traveler.Profile, traveler.AverageSpend, locationTags.ToArray());
         }
         catch (Exception e)
         {

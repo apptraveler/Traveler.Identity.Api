@@ -13,11 +13,11 @@ public class TravelerInformationResponse
     public TravelerAverageSpend AverageSpend { get; }
     public TravelerLocationTags[] LocationTags { get; }
 
-    public TravelerInformationResponse(string email, string fullName, Guid profileId, string profileName, string profileDescription, TravelerAverageSpend averageSpend, TravelerLocationTags[] locationTags = default)
+    public TravelerInformationResponse(string email, string fullName, TravelerProfile profile, TravelerAverageSpend averageSpend, TravelerLocationTags[] locationTags = default)
     {
         Email = email;
         FullName = fullName;
-        Profile = new TravelerProfileDto(profileId, profileName, profileDescription);
+        Profile = profile is not null ? new TravelerProfileDto(profile.Id, profile.Name, profile.Description) : default;
         AverageSpend = averageSpend;
         LocationTags = locationTags;
     }
