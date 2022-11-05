@@ -7,14 +7,16 @@ namespace Traveler.Identity.Api.Application.Dtos;
 
 public class TravelerInformationResponse
 {
+    public Guid UserId { get; }
     public string Email { get; }
     public string FullName { get; }
     public TravelerProfileDto Profile { get; }
     public TravelerAverageSpend AverageSpend { get; }
     public TravelerLocationTags[] LocationTags { get; }
 
-    public TravelerInformationResponse(string email, string fullName, TravelerProfile profile, TravelerAverageSpend averageSpend, TravelerLocationTags[] locationTags = default)
+    public TravelerInformationResponse(Guid userId, string email, string fullName, TravelerProfile profile, TravelerAverageSpend averageSpend, TravelerLocationTags[] locationTags = default)
     {
+        UserId = userId;
         Email = email;
         FullName = fullName;
         Profile = profile is not null ? new TravelerProfileDto(profile.Id, profile.Name, profile.Description) : default;
