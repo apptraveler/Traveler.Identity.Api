@@ -57,13 +57,13 @@ public class TravelerMap : IEntityTypeConfiguration<Domain.Aggregates.TravelerAg
         #region Relations
 
         builder.HasOne(x => x.Profile)
-            .WithOne()
-            .HasForeignKey<Domain.Aggregates.TravelerAggregate.Traveler>("ProfileId")
+            .WithMany()
+            .HasForeignKey("ProfileId")
             .IsRequired(false);
 
         builder.HasOne(x => x.AverageSpend)
-            .WithOne()
-            .HasForeignKey<Domain.Aggregates.TravelerAggregate.Traveler>("AverageSpendId")
+            .WithMany()
+            .HasForeignKey("AverageSpendId")
             .IsRequired(false);
 
         #endregion
