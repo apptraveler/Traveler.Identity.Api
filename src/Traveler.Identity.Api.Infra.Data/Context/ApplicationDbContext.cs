@@ -29,7 +29,7 @@ public class ApplicationDbContext : DbContext
         _applicationConfiguration = applicationConfiguration;
     }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlite("Data Source=../../db/identity;");
+    protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlite(_applicationConfiguration.ConnectionString);
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
