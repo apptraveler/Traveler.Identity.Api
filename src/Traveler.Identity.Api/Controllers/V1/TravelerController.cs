@@ -44,6 +44,16 @@ public class TravelerController : BaseController
         return Response(NoContent());
     }
 
+    [HttpDelete("profile")]
+    [ProducesResponseType(typeof(Response<RegisterResponse>), StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> SetTravelerProfile()
+    {
+        var userId = GetUserClaim(CustomClaims.UserId);
+        var command = new DeleteTravelerProfileCommand(Guid.Parse(userId));
+        await _bus.Send(command);
+        return Response(NoContent());
+    }
+
     [HttpGet("information")]
     [ProducesResponseType(typeof(Response<TravelerInformationResponse>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetUserInformation()

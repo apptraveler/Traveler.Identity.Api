@@ -8,4 +8,5 @@ public interface ITravelerRepository : IRepository<Traveler>
 {
     public Task<Traveler> GetByEmailAsync(string email);
     public Task<Traveler> GetByIdAsync(Guid id);
+    public void Remove(Traveler traveler);
 }

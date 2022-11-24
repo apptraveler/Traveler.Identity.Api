@@ -27,4 +27,9 @@ public class TravelerRepository : Repository<Domain.Aggregates.TravelerAggregate
             .Include(t => t.Profile)
             .FirstOrDefaultAsync(t => t.Id.Equals(id));
     }
+
+    public void Remove(Domain.Aggregates.TravelerAggregate.Traveler traveler)
+    {
+        DbSet.Remove(traveler);
+    }
 }
